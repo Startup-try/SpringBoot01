@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：最主要的作用就是绑定mapper.xml与对应那个Mapper接口的关系，要求接口名称为：全限定名 -->
+<mapper namespace="com.fdzc.springboot01.mapper.UserMapper">
+<!--      insert()  -->
+<!--    <insert id="insert">-->
+<!--        insert into user(user_name,password) values('sunwukong22222','123')-->
+<!--    </insert>-->
+
+    <!--  Integer delete()  -->
+    <delete id="delete">
+        delete from user where id=11
+    </delete>
+
+    <!--  User select()
+     resultType 设置映射关系（查询结果的返回类型）
+     resultMap 设置自定义映射关系
+     -->
+<!--    <select id="select" resultType="com.fdzc.springboot01.entity.User">-->
+<!--        select * from user where id = 2-->
+<!--    </select>-->
+
+
+    <!--  List<User> selectAll()  -->
+<!--    <select id="selectAll" resultType="com.fdzc.springboot01.entity.User">-->
+<!--        select * from user-->
+<!--    </select>-->
+
+    <!--  Map<String,Object> findUserToMap(Integer id)  -->
+<!--    <select id="findUserToMap" resultType="map">-->
+<!--        select * from user where id=#{id}-->
+<!--    </select>-->
+
+    <!-- Map<String,Object> findUserAllToMap() -->
+<!--    <select id="findUserAllToMap" resultType="map">-->
+<!--        select * from user-->
+<!--    </select>-->
+
+    <!--  Integer insertToOne(User user)  -->
+<!--    <insert id="insertToOne" useGeneratedKeys="true" keyProperty="id">-->
+<!--        insert into user(username,password) values(#{username},#{password})-->
+<!--    </insert>-->
+
+    <select id="findUserDept" resultType="com.fdzc.springboot01.vo.UserVo">
+        select
+            u.id,u.user_name,d.dept_name
+        from
+            user u
+                left join
+                dept d
+            on
+                u.dept_id = d.id;
+    </select>
+
+
+
+</mapper>

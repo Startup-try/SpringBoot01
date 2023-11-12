@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：最主要的作用就是绑定mapper.xml与对应那个Mapper接口的关系，要求接口名称为：全限定名 -->
+<mapper namespace="com.fdzc.springboot01.mapper.DeptMapper">
+    <!-- DeptVo findDept(Integer id)  -->
+    <resultMap id="deptMap" type="com.fdzc.springboot01.vo.DeptVo">
+        <id column="id" property="id"/>
+        <result column="dept_name" property="deptName"/>
+        <collection property="users" ofType="com.fdzc.springboot01.entity.User">
+            <result column="id" property="deptId"/>
+            <result column="u.id" property="id"/>
+            <result column="user_name" property="userName"/>
+            <result column="password" property="password"/>
+        </collection>
+    </resultMap>
+    <select id="findDeptUsers" resultMap="deptMap">
+        select
+            d.id,
+            dept_name,
+            u.id,
+            user_name,
+            password
+        from
+            dept d
+                left join
+            user u
+            on
+                d.id = u.dept_id
+        where
+            d.id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="userrr" class="com.fdzc.springboot01.entity.User">
+        <property name="userName">
+            <value>honghaier</value>
+        </property>
+        <property name="password">
+            <value>honghaier123</value>
+        </property>
+    </bean>
+
+    <bean id="student" class="com.fdzc.springboot01.test.Student">
+        <property name="no">
+            <value>3</value>
+        </property>
+        <property name="name">
+            <value>honghaier</value>
+        </property>
+        <property name="age">
+            <value>33</value>
+        </property>
+        <property name="grade">
+            <value>333</value>
+        </property>
+    </bean>
+
+
+    <bean id="student2" class="com.fdzc.springboot01.test.Student">
+        <constructor-arg>
+            <value>4</value>
+        </constructor-arg>
+        <constructor-arg>
+            <value>sunwukong</value>
+        </constructor-arg>
+        <constructor-arg>
+            <value>500</value>
+        </constructor-arg>
+        <constructor-arg>
+            <value>555</value>
+        </constructor-arg>
+    </bean>
+
+</beans>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：最主要的作用就是绑定mapper.xml与对应那个Mapper接口的关系，要求接口名称为：全限定名 -->
+<mapper namespace="com.fdzc.springboot01.mapper.DynamicMapper">
+
+    <!-- List<User> selectDynamicIf(Map map) -->
+<!--    <select id="selectDynamicIf" resultType="com.fdzc.springboot01.entity.User">-->
+<!--        select * from user where-->
+<!--            &#45;&#45; prefix在执行判断前添加where suffixOverrides判断后去掉and，如果有or可以通过and|or-->
+<!--            <if test="id != null and id != ''">-->
+<!--                 id=#{id}-->
+<!--            </if>-->
+<!--            <if test="username !=null and username != ''">-->
+<!--                 and username = #{username}-->
+<!--            </if>-->
+<!--    </select>-->
+    <select id="selectDynamicIf" resultType="com.fdzc.springboot01.entity.User">
+        select * from user
+        <where>
+            <choose>
+                <when test="id != null and id != ''">
+                    id=#{id}
+                </when>
+                <when test="user_name != null and user_name != ''">
+                    user_name=#{user_name}
+                </when>
+                <otherwise>
+                    password="ccccccc"
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <!--  Integer deleteByIds(Integer[] ids)  -->
+    <delete id="deleteByIds">
+        delete from user where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
